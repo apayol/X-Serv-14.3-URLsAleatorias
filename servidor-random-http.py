@@ -17,11 +17,16 @@ try:
         print('Answering back...')
         num_rand = str(random.randint(0, 999999999))
 
-        recvSocket.send(b"HTTP/1.1 200 OK\r\n\r\n" +
-                        b"<html><body><h1>Hola. " +
-                        b"</h1></body></html>" +
-                        b"\r\n")
+        recvSocket.send(
+            bytes(
+                "HTTP/1.1 200 OK\r\n\r\n" +
+                "<html><body><h1>Hola. " +
+                "<a href=" + num_rand + ">Dame otra</a>" +
+                "</h1></body></html>" +
+                "\r\n", "utf-8")
+        )
         recvSocket.close()
+
 except KeyboardInterrupt:
     print("Closing binded socket")
     mySocket.close()
